@@ -8,8 +8,10 @@ function show() {
 }
 
 function hide() {
+
     var p = document.getElementById('pwd');
     p.setAttribute('type', 'password');
+
 }
 
 var pwShown = 0;

@@ -170,8 +170,8 @@
 
 
 	<!-- The Modal -->
-	<div class="modal fade" id="myModal">
-		<div class="modal-dialog">
+	<div class="modal fade" onclick="clearForm()" id="myModal">
+		<div class="modal-dialog"  onclick="event.stopPropagation()">
 			<div class="modal-content">
 
 				<header class="head-form mb-0">
@@ -289,7 +289,7 @@
 				<!-- Modal footer -->
 				<div class="modal-footer" id="modal-footer">
 					<button id="btnThemNV" type="button" class="btn btn-success" onclick="TaoDanhSach()">Thêm người dùng</button>
-					<button id="btnCapNhat" type="button" class="btn btn-success" onclick="update()" data-dismiss="modal">Cập nhật</button>
+					<button id="btnCapNhat" type="button" class="btn btn-success" onclick="update()" >Cập nhật</button>
 					<button id="btnDong" type="button" class="btn btn-danger" onclick="clearForm()" data-dismiss="modal">Đóng</button>
 				</div>
 

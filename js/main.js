@@ -1,6 +1,8 @@
 var DanhSachQuanLy = [];
 
 function clearForm() {
+  document.getElementById('myModal').classList.remove('show');
+  document.getElementsByClassName('modal-backdrop')[0].classList.remove('show')
   document.querySelector("#tknv").value = "";
   document.querySelector("#name").value = "";
   document.querySelector("#email").value = "";
@@ -11,9 +13,9 @@ function clearForm() {
   document.querySelector("#gioLam").value = "";
   var spander = document.querySelectorAll(".sp-thongbao");
   var i;
-for (i = 0; i < spander.length; i++) {
-	spander[i].style.display = "none";
-}
+  for (i = 0; i < spander.length; i++) {
+    spander[i].style.display = "none";
+  }
 }
 
 function TaoDanhSach() {
@@ -28,9 +30,9 @@ function TaoDanhSach() {
   var spander = document.querySelectorAll(".sp-thongbao");
   console.log(ChucVuNV);
   var i;
-for (i = 0; i < spander.length; i++) {
-	spander[i].style.display = "block";
-}
+  for (i = 0; i < spander.length; i++) {
+    spander[i].style.display = "block";
+  }
   var NhanVien = new QuanLyNhanVien(
     TaiKhoanID,
     HoTenDayDu,
@@ -41,7 +43,6 @@ for (i = 0; i < spander.length; i++) {
     ChucVuNV,
     GioLamNV
   );
-
 
   var valid = true;
 
@@ -55,7 +56,7 @@ for (i = 0; i < spander.length; i++) {
     kiemTraRong(NhanVien.ChucVu, "#tbChucVu", "Chức Vụ") &
     kiemTraRong(NhanVien.GioLam, "#tbGiolam", "Gio Làm");
 
-    kiemTraChucVu();
+  kiemTraChucVu();
 
   if (kiemTraRong(NhanVien.FullName, "#tbTen", "Tên Sinh Viên")) {
     valid &=
@@ -106,21 +107,19 @@ for (i = 0; i < spander.length; i++) {
 function HienThiDanhSach(arr) {
   result = "";
   for (var i = 0; i < arr.length; i++) {
-    var obj =arr[i];
-    
+    var obj = arr[i];
+
     obj.TongLuong = function () {
       var x = arr[i].ChucVu;
       if (x === "sep") {
         return arr[i].Luong * 3;
-      }
-     else if(x === "truongphong") {
+      } else if (x === "truongphong") {
         return arr[i].Luong * 2;
-      }
-     else if(x === "nhanvien") {
+      } else if (x === "nhanvien") {
         return arr[i].Luong;
       }
-    }
-    
+    };
+
     obj.XepLoai = function () {
       if (this.GioLam >= 192) {
         return "Xuất sắc";
@@ -153,9 +152,8 @@ function HienThiDanhSach(arr) {
     result += td;
   }
   document.querySelector("#tableDanhSach").innerHTML = result;
-return result;
+  return result;
 }
-
 
 function del(arrID) {
   var del = -1;
@@ -241,8 +239,6 @@ function get(key) {
   return undefined;
 }
 
-
-
 var searchDS = function () {
   //input: tuKhoa : string
   var tuKhoa = document.querySelector("#searchName").value; //a
@@ -251,16 +247,18 @@ var searchDS = function () {
   var output = [];
 
   for (var i = 0; i < DanhSachQuanLy.length; i++) {
-
     var tenSV = removeVietnameseTones(DanhSachQuanLy[i].XepLoai());
-    
-    if (tenSV.toLowerCase().search(tuKhoa) != -1 || DanhSachQuanLy[i].ID == tuKhoa) {
+
+    if (
+      tenSV.toLowerCase().search(tuKhoa) != -1 ||
+      DanhSachQuanLy[i].ID == tuKhoa
+    ) {
       //tim thay => add object tai vi tri do vao output
-      
+
       output.push(DanhSachQuanLy[i]);
     }
   }
-  
+
   HienThiDanhSach(output);
 };
 document.querySelector("#searchName").oninput = searchDS;
