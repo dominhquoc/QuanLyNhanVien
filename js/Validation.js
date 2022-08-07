@@ -77,3 +77,11 @@ function kiemTraGiaTri(value, select, name, minValue, maxValue){
     document.querySelector(select).innerHTML = '';
     return true;
 }
+
+function kiemTraChucVu(){
+    var x = document.getElementById("chucvu").value;
+    if(x === ""){
+        document.getElementById("tbChucVu").innerHTML = "Phải chọn chức vụ hợp lệ"
+        return false;
+    }
+}

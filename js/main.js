@@ -42,6 +42,7 @@ for (i = 0; i < spander.length; i++) {
     GioLamNV
   );
 
+
   var valid = true;
 
   valid &=
@@ -53,6 +54,8 @@ for (i = 0; i < spander.length; i++) {
     kiemTraRong(NhanVien.Luong, "#tbLuongCB", "Lương") &
     kiemTraRong(NhanVien.ChucVu, "#tbChucVu", "Chức Vụ") &
     kiemTraRong(NhanVien.GioLam, "#tbGiolam", "Gio Làm");
+
+    kiemTraChucVu();
 
   if (kiemTraRong(NhanVien.FullName, "#tbTen", "Tên Sinh Viên")) {
     valid &=
@@ -104,9 +107,9 @@ function HienThiDanhSach(arr) {
   result = "";
   for (var i = 0; i < arr.length; i++) {
     var obj =arr[i];
-    console.log(arr[i].Luong);
+    
     obj.TongLuong = function () {
-      var x = document.getElementById("chucvu").value;
+      var x = arr[i].ChucVu;
       if (x === "sep") {
         return arr[i].Luong * 3;
       }
@@ -117,16 +120,16 @@ function HienThiDanhSach(arr) {
         return arr[i].Luong;
       }
     }
-    console.log(arr[i].Luong);
+    
     obj.XepLoai = function () {
       if (this.GioLam >= 192) {
-        return "Nhan vien xuat sac";
+        return "Xuất sắc";
       } else if (this.GioLam >= 176) {
-        return "Nhan vien gioi";
+        return "Gioi";
       } else if (this.GioLam >= 160) {
-        return "Nhan vien khá";
+        return "Khá";
       } else {
-        return "Nhan vien Trung Binh";
+        return "Trung Bình";
       }
     };
     var td = `
@@ -246,24 +249,18 @@ var searchDS = function () {
   tuKhoa = removeVietnameseTones(tuKhoa);
   //output: ?? []
   var output = [];
-  //process
-  //B1: duyet qua tung phan tu cua mang
-  //B2: Kiem tra ten co chua tu khoa hay khong
-  //B3: Neu co thi dua object do vao output
-  //                    0         1        2
-  //studentList = [{id,name},{id,name},{id,name}]
+
   for (var i = 0; i < DanhSachQuanLy.length; i++) {
-    //nguyen van a.search('a') 11
-    //nguyen van b.search('a') -1
-    //nguyen van c.search('a') -1
-    var tenSV = removeVietnameseTones(DanhSachQuanLy[i].FullName);
-    if (tenSV.search(tuKhoa) != -1 || DanhSachQuanLy[i].ID == tuKhoa) {
+
+    var tenSV = removeVietnameseTones(DanhSachQuanLy[i].XepLoai());
+    
+    if (tenSV.toLowerCase().search(tuKhoa) != -1 || DanhSachQuanLy[i].ID == tuKhoa) {
       //tim thay => add object tai vi tri do vao output
-      console.log(1);
+      
       output.push(DanhSachQuanLy[i]);
     }
   }
-  console.log(output);
+  
   HienThiDanhSach(output);
 };
 document.querySelector("#searchName").oninput = searchDS;
