@@ -1,8 +1,8 @@
 var DanhSachQuanLy = [];
 
 function clearForm() {
-  document.getElementById('myModal').classList.remove('show');
-  document.getElementsByClassName('modal-backdrop')[0].classList.remove('show')
+  document.getElementById("myModal").classList.remove("show");
+  document.getElementsByClassName("modal-backdrop")[0].classList.remove("show");
   document.querySelector("#tknv").value = "";
   document.querySelector("#name").value = "";
   document.querySelector("#email").value = "";
@@ -59,11 +59,7 @@ function TaoDanhSach() {
   kiemTraChucVu();
 
   if (kiemTraRong(NhanVien.FullName, "#tbTen", "Tên Sinh Viên")) {
-    valid &=
-      kiemTraKyTu(NhanVien.FullName, "#tbTen", "Tên Sinh Viên") &
-      kiemTraEmail(NhanVien.Email, "#tbEmail", "Email") &
-      kiemTraSo(NhanVien.ID, "#tbTKNV", "Mã Nhân Viên") &
-      kiemTraDoDai(NhanVien.ID, "#tbTKNV", "Mã Nhân Viên", 2, 5);
+    valid &= kiemTraKyTu(NhanVien.FullName, "#tbTen", "Tên Sinh Viên");
   }
   if (kiemTraRong(NhanVien.Email, "#tbEmail", "Email")) {
     valid &= kiemTraEmail(NhanVien.Email, "#tbEmail", "Email");
@@ -73,11 +69,11 @@ function TaoDanhSach() {
     valid &= kiemTraPass(NhanVien.MatKhau, "#tbMatKhau", "Mật Khẩu");
   }
 
-  // if (kiemTraRong(NhanVien.ID, "#tbTKNV", "Mã Nhân Viên")) {
-  //   valid &=
-  //     kiemTraSo(NhanVien.ID, "#tbTKNV", "Mã Nhân Viên") &&
-  //     kiemTraDoDai(NhanVien.ID, "#tbTKNV", "Mã Nhân Viên", 2, 5);
-  // }
+  if (kiemTraRong(NhanVien.ID, "#tbTKNV", "Mã Nhân Viên")) {
+    valid &=
+      kiemTraSo(NhanVien.ID, "#tbTKNV", "Mã Nhân Viên") &&
+      kiemTraDoDai(NhanVien.ID, "#tbTKNV", "Mã Nhân Viên", 2, 5);
+  }
   if (kiemTraRong(NhanVien.Luong, "#tbLuongCB", "Lương")) {
     valid &= kiemTraGiaTri(
       NhanVien.Luong,
