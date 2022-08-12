@@ -85,3 +85,11 @@ function kiemTraChucVu(){
         return false;
     }
 }
+
+function myKeyUp(valueX,select) {
+    var valueO = document.querySelector(valueX).value;
+      if(valueO.length > 0){
+          document.querySelector(select).style.display = "none";      
+        }else{
+          document.querySelector(select).style.display = "block";} 
+  }

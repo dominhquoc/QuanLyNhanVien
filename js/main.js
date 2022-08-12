@@ -87,6 +87,7 @@ function TaoDanhSach() {
     valid &= kiemTraGiaTri(NhanVien.GioLam, "#tbGiolam", "Gio Làm", 80, 200);
   }
 
+
   if (!valid) {
     return;
   }
